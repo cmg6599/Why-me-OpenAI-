@@ -97,6 +97,28 @@
       color: #08120f;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: 0 0 28px rgba(16, 163, 127, 0.36);
+      overflow: hidden;
+    }
+
+    .brand-mark img {
+      width: 19px;
+      height: 19px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(8, 18, 15, 0.25));
+    }
+
+    .brand-mark-fallback {
+      display: none;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .brand-mark.logo-failed img {
+      display: none;
+    }
+
+    .brand-mark.logo-failed .brand-mark-fallback {
+      display: block;
     }
 
     .nav-links {
@@ -1055,7 +1077,10 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <a class="brand" href="#hero" aria-label="Why Me home">
-        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/logos/openai.svg" alt="" loading="eager">
+          <span class="brand-mark-fallback">C</span>
+        </span>
         <span>Why Me?</span>
       </a>
       <div class="nav-links">
@@ -1352,6 +1377,9 @@
     document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
     document.querySelectorAll(".logo-tile img").forEach((img) => {
       img.addEventListener("error", () => img.closest(".logo-tile").classList.add("logo-failed"));
+    });
+    document.querySelectorAll(".brand-mark img").forEach((img) => {
+      img.addEventListener("error", () => img.closest(".brand-mark").classList.add("logo-failed"));
     });
   </script>
 </body>
